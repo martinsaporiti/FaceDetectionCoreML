@@ -84,15 +84,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
                 guard let faceObservation = res as? VNFaceObservation else {return}
                 
-                let x = self.view.frame.width * faceObservation.boundingBox.origin.x
+                let x : CGFloat!;
                 let width = self.view.frame.width * faceObservation.boundingBox.width
                 let height = scaledHeight * faceObservation.boundingBox.height
                 
                 let y : CGFloat!;
                 if(image.size.width < image.size.height){
-                    y = ((scaledHeight * (1 - faceObservation.boundingBox.origin.y) - height))/2 + self.topAnchor
+                    y = ((scaledHeight * (1 - faceObservation.boundingBox.origin.y) - height))/2
+                    x = self.view.frame.width * faceObservation.boundingBox.origin.x
                 } else {
                     y = (scaledHeight * (1 - faceObservation.boundingBox.origin.y) - height) + self.topAnchor
+                    x = self.view.frame.width * faceObservation.boundingBox.origin.x
                 }
                 
                 let redView = UIView(frame: CGRect(x: x, y: y, width: width, height: height))
