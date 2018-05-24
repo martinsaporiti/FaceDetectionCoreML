@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160ABEC385C29489516C15F9 /* Pods_Face_Detection_Core_ML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4FAF3B5ED463693D57A46E /* Pods_Face_Detection_Core_ML.framework */; };
 		2988BD8020B4667E00B76975 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2988BD7F20B4667E00B76975 /* AppDelegate.swift */; };
 		2988BD8220B4667E00B76975 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2988BD8120B4667E00B76975 /* ViewController.swift */; };
 		2988BD8520B4667E00B76975 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2988BD8320B4667E00B76975 /* Main.storyboard */; };
 		2988BD8720B4668100B76975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2988BD8620B4668100B76975 /* Assets.xcassets */; };
 		2988BD8A20B4668100B76975 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2988BD8820B4668100B76975 /* LaunchScreen.storyboard */; };
 		2988BD9220B6D92F00B76975 /* UIIMageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2988BD9120B6D92F00B76975 /* UIIMageExtension.swift */; };
+		2988BD9420B6E42300B76975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2988BD9320B6E42300B76975 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,10 @@
 		2988BD8920B4668100B76975 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2988BD8B20B4668100B76975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2988BD9120B6D92F00B76975 /* UIIMageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIMageExtension.swift; sourceTree = "<group>"; };
+		2988BD9320B6E42300B76975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B4FAF3B5ED463693D57A46E /* Pods_Face_Detection_Core_ML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Face_Detection_Core_ML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8201C9AD0A53A56E1FEB3F0 /* Pods-Face Detection Core ML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Face Detection Core ML.release.xcconfig"; path = "Pods/Target Support Files/Pods-Face Detection Core ML/Pods-Face Detection Core ML.release.xcconfig"; sourceTree = "<group>"; };
+		CBBDA34E260C9174B9B01577 /* Pods-Face Detection Core ML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Face Detection Core ML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Face Detection Core ML/Pods-Face Detection Core ML.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				160ABEC385C29489516C15F9 /* Pods_Face_Detection_Core_ML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 			children = (
 				2988BD7E20B4667E00B76975 /* Face Detection Core ML */,
 				2988BD7D20B4667E00B76975 /* Products */,
+				8707C6B82948F0026CDE521D /* Pods */,
+				E22D74CF8C5679D703F06823 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +72,26 @@
 				2988BD8820B4668100B76975 /* LaunchScreen.storyboard */,
 				2988BD8B20B4668100B76975 /* Info.plist */,
 				2988BD9120B6D92F00B76975 /* UIIMageExtension.swift */,
+				2988BD9320B6E42300B76975 /* GoogleService-Info.plist */,
 			);
 			path = "Face Detection Core ML";
+			sourceTree = "<group>";
+		};
+		8707C6B82948F0026CDE521D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CBBDA34E260C9174B9B01577 /* Pods-Face Detection Core ML.debug.xcconfig */,
+				B8201C9AD0A53A56E1FEB3F0 /* Pods-Face Detection Core ML.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E22D74CF8C5679D703F06823 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B4FAF3B5ED463693D57A46E /* Pods_Face_Detection_Core_ML.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2988BD8E20B4668100B76975 /* Build configuration list for PBXNativeTarget "Face Detection Core ML" */;
 			buildPhases = (
+				35E651B0464288216902C8AA /* [CP] Check Pods Manifest.lock */,
 				2988BD7820B4667E00B76975 /* Sources */,
 				2988BD7920B4667E00B76975 /* Frameworks */,
 				2988BD7A20B4667E00B76975 /* Resources */,
+				5402A00FEA520E02A81E3F0C /* [CP] Embed Pods Frameworks */,
+				D7D9A0E830601133355D9868 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -128,10 +158,76 @@
 				2988BD8A20B4668100B76975 /* LaunchScreen.storyboard in Resources */,
 				2988BD8720B4668100B76975 /* Assets.xcassets in Resources */,
 				2988BD8520B4667E00B76975 /* Main.storyboard in Resources */,
+				2988BD9420B6E42300B76975 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		35E651B0464288216902C8AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Face Detection Core ML-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5402A00FEA520E02A81E3F0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Face Detection Core ML/Pods-Face Detection Core ML-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Face Detection Core ML/Pods-Face Detection Core ML-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7D9A0E830601133355D9868 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Face Detection Core ML/Pods-Face Detection Core ML-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVFaceDetectorResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMVFaceDetectorResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Face Detection Core ML/Pods-Face Detection Core ML-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2988BD7820B4667E00B76975 /* Sources */ = {
@@ -282,6 +378,7 @@
 		};
 		2988BD8F20B4668100B76975 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBBDA34E260C9174B9B01577 /* Pods-Face Detection Core ML.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +397,7 @@
 		};
 		2988BD9020B4668100B76975 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8201C9AD0A53A56E1FEB3F0 /* Pods-Face Detection Core ML.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

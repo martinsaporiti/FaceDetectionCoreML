@@ -8,12 +8,14 @@
 
 import UIKit
 import Vision
+import Firebase
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var cantFacesLabel: UILabel!
     
     
+    @IBOutlet weak var cantFacesLabelMl: UILabel!
     var imagePicker : UIImagePickerController? = UIImagePickerController()
     
     
@@ -35,7 +37,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
-
+        
+        
+    }
+    
+    
+    func visionMLSetUp(){
+        
     }
 
     @objc func rotated() {
@@ -44,6 +52,40 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else {
             print("Portrait")
         }
+    }
+    
+    
+    func visionFaceDetaction(image: UIImage){
+        var vision = Vision.vision()
+        let options = VisionFaceDetectorOptions()
+        options.modeType = .accurate
+        options.landmarkType = .all
+        options.classificationType = .all
+        options.minFaceSize = CGFloat(0.1)
+        options.isTrackingEnabled = true
+        
+        let faceDetector = vision.faceDetector(options: options)  // Check console for errors.
+//        let faceDetector = vision.faceDetector(options: options)  // Check console for errors.
+        // Or, to use the default settings:
+//        let faceDetector = vision.faceDetector()
+        
+        let image = VisionImage(image: image)
+        
+        faceDetector.detect(in: image) { (faces, error) in
+            guard error == nil, let faces = faces, !faces.isEmpty else {
+                // Error. You should also check the console for error messages.
+                // ...
+                return
+            }
+            
+            // Faces detected
+            // ...
+            
+            var count: Int = faces.count
+            self.cantFacesLabelMl.text =  "Se detectaron: \(count) rostros con ML"
+            print("Cantidas  de rostros detectados: ", faces.count)
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,16 +100,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
         imageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0)
         imageView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0)
-    
         imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: self.topAnchor).isActive = true
     }
 
     func loadImageAndDetect(image: UIImage){
         
         self.clearFaces()
+        visionFaceDetaction(image: image)
         imageView.image = image
         self.currentImage = image
-       
         let scaledHeight = (view.frame.width / (image.size.width) * (image.size.height))
         imageView.heightAnchor.constraint(equalToConstant: scaledHeight).isActive = true
         
@@ -78,7 +119,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
 
             let count : String = String(stringInterpolationSegment: request.results!.count)
-            self.cantFacesLabel.text = "Se detectaron: \(count) rostros."
+            self.cantFacesLabel.text = "Se detectaron: \(count) rostros con CoreML"
 
             request.results?.forEach({ (res) in
 
