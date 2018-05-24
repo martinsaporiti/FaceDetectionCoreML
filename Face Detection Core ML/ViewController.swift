@@ -84,7 +84,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             // ...
             
             let count: Int = faces.count
-            self.cantFacesLabelMl.text =  "Se detectaron: \(count) rostros con ML"
+            self.cantFacesLabelMl.text =  "Se detectaron: \(count) rostros con Firebase"
 
             let scaledHeight = (self.view.frame.width / (initialImage.size.width) * (initialImage.size.height))
 
