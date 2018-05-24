@@ -47,8 +47,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGH-kV-sFV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGH-kV-sFV">
                                 <rect key="frame" x="0.0" y="525" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foQ-Ra-7Kc">
+                                <rect key="frame" x="0.0" y="494" width="375" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="Bfx-51-1Jz"/>
+                                    <constraint firstAttribute="height" constant="21" id="kgy-xL-aXf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -57,7 +67,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="u2P-pW-uPl" firstAttribute="top" secondItem="NGH-kV-sFV" secondAttribute="bottom" constant="10" id="0OQ-jE-eWf"/>
+                            <constraint firstItem="NGH-kV-sFV" firstAttribute="top" secondItem="foQ-Ra-7Kc" secondAttribute="bottom" constant="10" id="3W8-jI-Qe3"/>
                             <constraint firstItem="Ljp-xP-Cd8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5QF-qf-nHV"/>
+                            <constraint firstItem="foQ-Ra-7Kc" firstAttribute="leading" secondItem="u2P-pW-uPl" secondAttribute="leading" id="IMN-Dw-1aV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pba-Y8-t3d" secondAttribute="trailing" constant="20" id="WNh-sQ-YfE"/>
                             <constraint firstItem="NGH-kV-sFV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bD9-9o-Pza"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u2P-pW-uPl" secondAttribute="trailing" id="byn-Ws-UZR"/>
@@ -65,12 +77,14 @@
                             <constraint firstItem="u2P-pW-uPl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mRZ-f5-UVi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u2P-pW-uPl" secondAttribute="bottom" constant="90" id="o94-B6-NeW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ljp-xP-Cd8" secondAttribute="bottom" constant="20" id="pvO-aY-Y3Y"/>
+                            <constraint firstItem="foQ-Ra-7Kc" firstAttribute="leading" secondItem="NGH-kV-sFV" secondAttribute="leading" id="ytt-5p-zLR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="cantFacesLabel" destination="u2P-pW-uPl" id="mop-7M-sSg"/>
                         <outlet property="cantFacesLabelMl" destination="NGH-kV-sFV" id="bbU-GF-XMl"/>
+                        <outlet property="cantFacesSmiling" destination="foQ-Ra-7Kc" id="Bwx-tf-bTW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

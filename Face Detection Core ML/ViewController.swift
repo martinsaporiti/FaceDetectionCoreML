@@ -14,6 +14,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var cantFacesLabel: UILabel!
     
+    @IBOutlet weak var cantFacesSmiling: UILabel!
     
     @IBOutlet weak var cantFacesLabelMl: UILabel!
     var imagePicker : UIImagePickerController? = UIImagePickerController()
@@ -28,6 +29,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let topAnchor : CGFloat = 20
     var portrait : Bool!
     
+    
+    // Google ML (Firebase)
+    var optionsMLFirebase : VisionFaceDetectorOptions = {
+        var options = VisionFaceDetectorOptions()
+        options.modeType = .accurate
+        options.landmarkType = .all
+        options.classificationType = .all
+        options.minFaceSize = CGFloat(0.1)
+        options.isTrackingEnabled = true
+        return options
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.portrait = !UIDevice.current.orientation.isLandscape
@@ -36,9 +50,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.loadImageAndDetect(image: #imageLiteral(resourceName: "sample1"))
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-
-        
-        
     }
     
     
@@ -48,29 +59,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @objc func rotated() {
         if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
+//            print("Landscape")
         } else {
-            print("Portrait")
+//            print("Portrait")
         }
     }
     
     
-    func visionFaceDetaction(image: UIImage){
+    func visionFaceDetaction(initialImage: UIImage){
         var vision = Vision.vision()
-        let options = VisionFaceDetectorOptions()
-        options.modeType = .accurate
-        options.landmarkType = .all
-        options.classificationType = .all
-        options.minFaceSize = CGFloat(0.1)
-        options.isTrackingEnabled = true
+        let faceDetector = vision.faceDetector(options: self.optionsMLFirebase)
+        let image = VisionImage(image: initialImage)
         
-        let faceDetector = vision.faceDetector(options: options)  // Check console for errors.
-//        let faceDetector = vision.faceDetector(options: options)  // Check console for errors.
-        // Or, to use the default settings:
-//        let faceDetector = vision.faceDetector()
         
-        let image = VisionImage(image: image)
-        
+        var countFacesSmiling = 0;
         faceDetector.detect(in: image) { (faces, error) in
             guard error == nil, let faces = faces, !faces.isEmpty else {
                 // Error. You should also check the console for error messages.
@@ -81,9 +83,57 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             // Faces detected
             // ...
             
-            var count: Int = faces.count
+            let count: Int = faces.count
             self.cantFacesLabelMl.text =  "Se detectaron: \(count) rostros con ML"
-            print("Cantidas  de rostros detectados: ", faces.count)
+
+            let scaledHeight = (self.view.frame.width / (initialImage.size.width) * (initialImage.size.height))
+
+            for face in faces {
+                let frame = face.frame
+                
+                if face.hasHeadEulerAngleY {
+                    let rotY = face.headEulerAngleY  // Head is rotated to the right rotY degrees
+                }
+                if face.hasHeadEulerAngleZ {
+                    let rotZ = face.headEulerAngleZ  // Head is rotated upward rotZ degrees
+                }
+                
+                // If landmark detection was enabled (mouth, ears, eyes, cheeks, and
+                // nose available):
+                if let leftEye = face.landmark(ofType: .leftEye) {
+                    let leftEyePosition = leftEye.position
+                }
+                
+                // If classification was enabled:
+                if face.hasSmilingProbability {
+                    let smileProb = face.smilingProbability
+                    print(smileProb)
+                    if(smileProb > 0.75){
+                       countFacesSmiling = countFacesSmiling + 1
+                    }
+                }
+                if face.hasRightEyeOpenProbability {
+                    let rightEyeOpenProb = face.rightEyeOpenProbability
+                }
+                
+                // If face tracking was enabled:
+                if face.hasTrackingID {
+                    let trackingId = face.trackingID
+                }
+            
+                let widthRatio = self.imageView.frame.size.width / initialImage.size.width
+                let heightRatio = self.imageView.frame.size.height / initialImage.size.height
+                
+                let greenView = UIView(frame: CGRect(x: face.frame.minX * widthRatio, y: (face.frame.minY * heightRatio) + self.topAnchor, width: face.frame.width * widthRatio, height: face.frame.height * heightRatio))
+                
+                greenView.backgroundColor = UIColor.green
+                greenView.alpha = 0.5
+                self.view.addSubview(greenView);
+                self.facesRectangles.append(greenView);
+
+            }
+            
+            self.cantFacesSmiling.text =  "Se detectaron: \(countFacesSmiling) sonrisas"
         }
 
     }
@@ -106,12 +156,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func loadImageAndDetect(image: UIImage){
         
         self.clearFaces()
-        visionFaceDetaction(image: image)
+        self.visionFaceDetaction(initialImage: image)
         imageView.image = image
         self.currentImage = image
+        
+        
+        // Detección de imágenes utilizando el CoreML
         let scaledHeight = (view.frame.width / (image.size.width) * (image.size.height))
         imageView.heightAnchor.constraint(equalToConstant: scaledHeight).isActive = true
-        
         let request = VNDetectFaceRectanglesRequest { (request, error) in
             if let err = error {
                 print("Failed to detect a face: ", err);
@@ -138,14 +190,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     x = self.view.frame.width * faceObservation.boundingBox.origin.x
                 }
                 
+//                print("=====")
+//                print("faceObservation.x: ", faceObservation.boundingBox.origin.x)
+//                print("faceObservation.y: ", faceObservation.boundingBox.origin.y)
+//
+//                print("Red scaledHeight: :", scaledHeight)
+//                print("red width: :", width)
+//                print("red height: :", height)
+//                print("red y: :", y)
+//                print("red x: :", x)
+//                print("=====")
+                
                 let redView = UIView(frame: CGRect(x: x, y: y, width: width, height: height))
                 redView.backgroundColor = UIColor.red
                 redView.alpha = 0.5
+                
                 self.view.addSubview(redView)
                 self.facesRectangles.append(redView);
 
             })
-
 
         }
         
@@ -159,13 +222,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print("Error to perform request: " , errReq)
         }
 
-    }
-    
-    
-    func clearFaces(){
-        self.facesRectangles.forEach { (face) in
-            face.removeFromSuperview()
-        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -192,6 +248,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(imagePicker!, animated: true, completion: nil)
     }
     
+    func clearFaces(){
+        self.facesRectangles.forEach { (face) in
+            face.removeFromSuperview()
+        }
+    }
     
 }
 
