@@ -27,6 +27,7 @@
 		2988BD8B20B4668100B76975 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2988BD9120B6D92F00B76975 /* UIIMageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIMageExtension.swift; sourceTree = "<group>"; };
 		2988BD9320B6E42300B76975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2988BD9520B7299D00B76975 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2B4FAF3B5ED463693D57A46E /* Pods_Face_Detection_Core_ML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Face_Detection_Core_ML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8201C9AD0A53A56E1FEB3F0 /* Pods-Face Detection Core ML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Face Detection Core ML.release.xcconfig"; path = "Pods/Target Support Files/Pods-Face Detection Core ML/Pods-Face Detection Core ML.release.xcconfig"; sourceTree = "<group>"; };
 		CBBDA34E260C9174B9B01577 /* Pods-Face Detection Core ML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Face Detection Core ML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Face Detection Core ML/Pods-Face Detection Core ML.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +74,7 @@
 				2988BD8B20B4668100B76975 /* Info.plist */,
 				2988BD9120B6D92F00B76975 /* UIIMageExtension.swift */,
 				2988BD9320B6E42300B76975 /* GoogleService-Info.plist */,
+				2988BD9520B7299D00B76975 /* README.md */,
 			);
 			path = "Face Detection Core ML";
 			sourceTree = "<group>";
